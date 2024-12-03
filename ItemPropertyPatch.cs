@@ -38,63 +38,55 @@ internal static class ItemDropRatePatch
     [HarmonyPostfix]
     internal static void MonsterDropAugment(MonsterDropItemDataID dataID, ref MonsterDropItemDataTable __result)
     {
+        RF5ItemDropRate.Log.LogInfo($"MonsterDropItemDataTable.GetDataTable dataID {dataID}");
         bool wasUpdated = LastMonsterItemDrops.TryGetValue(dataID, out int lastItemDropRate);
-        RF5ItemDropRate.Log.LogInfo($"wasUpdated {wasUpdated} dataID {dataID} lastItemDropRate {lastItemDropRate} MonsterItemDrops.Value {MonsterItemDrops.Value}");
+        RF5ItemDropRate.Log.LogInfo($"Drops: wasUpdated {wasUpdated} dataID {dataID} lastItemDropRate {lastItemDropRate} MonsterItemDrops.Value {MonsterItemDrops.Value}");
         if (MonsterItemDrops.Value != lastItemDropRate)
         {
-            Il2CppSystem.Collections.Generic.List<DropItemParam> list = new Il2CppSystem.Collections.Generic.List<DropItemParam>();
-            
-            foreach (var dropItem in __result.DropItemParamList.ToArray())
+            for (int i = 0; i < __result.DropItemParamList.Count; i++)
             {
+                var dropItem = __result.DropItemParamList[i];
                 PrintNameAndDropRate(dropItem, MonsterItemDrops.Value);
 
-                dropItem.DropPercent = 100;
-                list.Add(new DropItemParam()
-                {
-                    ItemID = dropItem.ItemID,
-                    DropPercent = wasUpdated ? dropItem.DropPercent / lastItemDropRate * MonsterItemDrops.Value : dropItem.DropPercent * MonsterItemDrops.Value,
-                });
+                dropItem.DropPercent = wasUpdated ? dropItem.DropPercent / lastItemDropRate * MonsterItemDrops.Value : dropItem.DropPercent * MonsterItemDrops.Value;
+                __result.DropItemParamList[i] = dropItem;
             }
 
-            __result.DropItemParamList = list;
             LastMonsterItemDrops[dataID] = MonsterItemDrops.Value;
+        }
+        else{
+
         }
 
         wasUpdated = LastMonsterBonusItemDrops.TryGetValue(dataID, out lastItemDropRate);
+        RF5ItemDropRate.Log.LogInfo($"Bonus Drops: wasUpdated {wasUpdated} lastItemDropRate {lastItemDropRate} MonsterItemDrops.Value {MonsterBonusItemDrops.Value}");
         if (MonsterBonusItemDrops.Value != lastItemDropRate)
         {
-            Il2CppSystem.Collections.Generic.List<DropItemParam> list = new Il2CppSystem.Collections.Generic.List<DropItemParam>();
-            foreach (var dropItem in __result.BonusDropItemParamList.ToArray())
+            for (int i = 0; i < __result.BonusDropItemParamList.Count; i++)
             {
+                var dropItem = __result.BonusDropItemParamList[i];
                 PrintNameAndDropRate(dropItem, MonsterItemDrops.Value);
 
-                list.Add(new DropItemParam()
-                {
-                    ItemID = dropItem.ItemID,
-                    DropPercent = wasUpdated ? dropItem.DropPercent / lastItemDropRate * MonsterItemDrops.Value : dropItem.DropPercent * MonsterItemDrops.Value,
-                });
+                dropItem.DropPercent = wasUpdated ? dropItem.DropPercent / lastItemDropRate * MonsterItemDrops.Value : dropItem.DropPercent * MonsterItemDrops.Value;
+                __result.BonusDropItemParamList[i] = dropItem;
             }
 
-            __result.BonusDropItemParamList = list;
             LastMonsterBonusItemDrops[dataID] = MonsterBonusItemDrops.Value;
         }
 
         wasUpdated = LastMonsterSealItemDrops.TryGetValue(dataID, out lastItemDropRate);
-        if (MonsterSealItemDrops.Value > 1)
+        RF5ItemDropRate.Log.LogInfo($"Seal Drops: wasUpdated {wasUpdated} lastItemDropRate {lastItemDropRate} MonsterItemDrops.Value {MonsterSealItemDrops.Value}");
+        if (MonsterSealItemDrops.Value != lastItemDropRate)
         {
-            Il2CppSystem.Collections.Generic.List<DropItemParam> list = new Il2CppSystem.Collections.Generic.List<DropItemParam>();
-            foreach (var dropItem in __result.HandcuffsDropItemParamList.ToArray())
+            for (int i = 0; i < __result.HandcuffsDropItemParamList.Count; i++)
             {
+                var dropItem = __result.HandcuffsDropItemParamList[i];
                 PrintNameAndDropRate(dropItem, MonsterItemDrops.Value);
 
-                list.Add(new DropItemParam()
-                {
-                    ItemID = dropItem.ItemID,
-                    DropPercent = wasUpdated ? dropItem.DropPercent / lastItemDropRate * MonsterItemDrops.Value : dropItem.DropPercent * MonsterItemDrops.Value,
-                });
+                dropItem.DropPercent = wasUpdated ? dropItem.DropPercent / lastItemDropRate * MonsterItemDrops.Value : dropItem.DropPercent * MonsterItemDrops.Value;
+                __result.HandcuffsDropItemParamList[i] = dropItem;
             }
 
-            __result.HandcuffsDropItemParamList = list;
             LastMonsterSealItemDrops[dataID] = MonsterSealItemDrops.Value;
         }
     }
