@@ -3,7 +3,7 @@ Rune Factory 5 BepInEx (>647) plugin to change drop rates from monsters
 
 range from 1-1000. Lowest drop rate of items is 0.1% so 1000 guarantees all monster drops.
 
-Here is with default x5 rate:
+Here is with a x50 rate:
 <img src="https://raw.githubusercontent.com/davidthemaster30/RF5_ItemDropRate/3b7c96e8c521e27e62c88f6aaca5651252b547e2/monster%20drop%20rate.png"> 
 
 
