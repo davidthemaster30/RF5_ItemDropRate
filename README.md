@@ -14,4 +14,4 @@ or install other base mod BepInEx already included (like [original RF5Fix v0.1.5
 5. (Optional) Get my [Auto Pickup Mod](https://www.nexusmods.com/runefactory5/mods/102) to pickup dropped branches and rocks
 
 ## Mirrors
-* [New Nexus Mods](https://www.nexusmods.com/runefactory5/mods/102)
+* [Nexus Mods](https://www.nexusmods.com/runefactory5/mods/102)
