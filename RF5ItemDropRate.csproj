@@ -8,7 +8,7 @@
     <Version>1.0.0</Version>
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <RootNamespace>RF5AutoPickup</RootNamespace>
+    <RootNamespace>RF5ItemDropRate</RootNamespace>
     <RestoreAdditionalProjectSources>
       https://api.nuget.org/v3/index.json;
       https://nuget.bepinex.dev/v3/index.json;
