@@ -1,6 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ImplicitUsings>enable</ImplicitUsings>
     <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>RF5ItemDropRate</AssemblyName>
     <Description>RF5ItemDropRate</Description>
