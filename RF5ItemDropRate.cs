@@ -6,21 +6,16 @@ using BepInEx.Logging;
 
 namespace RF5ItemDropRate;
 
-[BepInPlugin(PluginGUID, PluginName, PluginVersion)]
+[BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
 [BepInProcess(GameProcessName)]
 public class RF5ItemDropRate : BasePlugin
 {
-    #region PluginInfo
-    private const string PluginGUID = "RF5ItemDropRate";
-    private const string PluginName = "RF5ItemDropRate";
     private const string PluginConfigSection = "RF5 Item Drop Rate Modifier";
-    private const string PluginVersion = "1.0.0";
     private const string GameProcessName = "Rune Factory 5.exe";
-    #endregion
 
     internal static readonly ManualLogSource Log = BepInEx.Logging.Logger.CreateLogSource("ItemDropRate");
 
-    internal static void LoadConfig(ConfigFile Config)
+    internal void LoadConfig()
     {
         ItemDropRatePatch.MonsterItemDrops = Config.Bind(PluginConfigSection, nameof(ItemDropRatePatch.MonsterItemDrops), 5, new ConfigDescription("Base monster item drop rate multiplier.", new AcceptableValueRange<int>(1, 1000)));
         ItemDropRatePatch.MonsterItemDrops.SettingChanged += ItemDropRatePatch.OnSettingChanged;
@@ -32,12 +27,11 @@ public class RF5ItemDropRate : BasePlugin
 
     public override void Load()
     {
-        // Plugin startup logic
-        Log.LogInfo($"Plugin {PluginName} is loaded!");
+        Log.LogInfo($"Plugin {MyPluginInfo.PLUGIN_NAME} {MyPluginInfo.PLUGIN_VERSION} is loading!");
 
-        // Config
-        LoadConfig(Config);
-
+        LoadConfig();
         Harmony.CreateAndPatchAll(typeof(ItemDropRatePatch));
+
+        Log.LogInfo($"Plugin {MyPluginInfo.PLUGIN_NAME} {MyPluginInfo.PLUGIN_VERSION} is loaded!");
     }
 }
