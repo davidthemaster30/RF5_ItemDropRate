@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <AssemblyName>RF5ItemDropRate</AssemblyName>
-    <Description>RF5ItemDropRate</Description>
-    <Product>RF5ItemDropRate</Product>
+    <AssemblyName>RF5_ItemDropRate</AssemblyName>
+    <Description>RF5_ItemDropRate</Description>
+    <Product>RF5_ItemDropRate</Product>
     <Company>https://github.com/davidthemaster30/RF5_ItemDropRate</Company>
     <Version>1.0.1</Version>
     <LangVersion>latest</LangVersion>
