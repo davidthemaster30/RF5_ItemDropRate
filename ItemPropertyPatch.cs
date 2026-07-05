@@ -1,6 +1,4 @@
-using BehaviorDesigner.Runtime.Tasks;
 using BepInEx.Configuration;
-using BepInEx.Logging;
 using HarmonyLib;
 
 namespace RF5ItemDropRate;
@@ -53,9 +51,6 @@ internal static class ItemDropRatePatch
             }
 
             LastMonsterItemDrops[dataID] = MonsterItemDrops.Value;
-        }
-        else{
-
         }
 
         wasUpdated = LastMonsterBonusItemDrops.TryGetValue(dataID, out lastItemDropRate);
